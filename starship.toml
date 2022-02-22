@@ -1,0 +1,12 @@
+# ~/.config/starship.toml
+
+right_format = """$time"""
+[character]
+success_symbol = "[➜](bold green) "
+error_symbol = "[✗](bold red) "
+
+[time]
+disabled = false
+format = '[$time](cyan italic dimmed)'
+time_format = "%T"
+utc_time_offset = "local"
