@@ -51,6 +51,16 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 # Set background to Chroma Blue
 osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/System/Library/Desktop Pictures/Chroma Blue.heic"'
 
+# Set computer to dark mode
+defaults write NSGlobalDomain AppleInterfaceStyle -string 'Dark';
+
+# Disable autoswitch light/dark
+defaults write NSGlobalDomain AppleInterfaceStyleSwitchesAutomatically -bool false;
+
+# "com.displaylink.DisplayLinkUserAgent" =     {
+#         AppAutostart = 1;
+#         AppleWatchUnlock = 1;
+
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
@@ -64,6 +74,8 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightC
 defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
 defaults write com.apple.AppleMultitouchTrackpad TrackpadCornerSecondaryClick -int 2
 defaults write NSGlobalDomain ContextMenuGesture -int 1
+
+# Magic Mouse Settings
 
 # Disable press-and-hold for keys in favor of key repeat
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
@@ -157,6 +169,15 @@ chflags nohidden ~/Library
 # Set the icon size of Dock items
 defaults write com.apple.dock tilesize -int 30
 
+# Turn on dock magnification
+defaults write com.apple.dock magnification -bool true
+
+# Set magnification size
+defaults write com.apple.dock largesize -int 105
+
+# Auto hide the dock
+defaults write com.apple.dock autohide -bool true
+
 # Speed up Mission Control animations
 defaults write com.apple.dock expose-animation-duration -float 0.15
 
@@ -170,6 +191,68 @@ defaults write com.apple.universalaccess reduceTransparency -bool true
 # Menu Bar                                                                    #
 ###############################################################################
 
+# Set Menu Bar Time Format
+defaults write com.apple.menuextra.clock DateFormat -string "EEE MMM d HH:mm"
+
+# Remove Siri from Menu Bar
+defaults write com.apple.Siri StatusMenuVisible -bool false;
+
+# Remove Battery from Menu Bar
+defaults write com.apple.controlcenter.NSStatusItem "Visible Battery" -bool false
+
+#! "com.apple.controlcenter" =     {
+#         "NSStatusItem Preferred Position Battery" = 213;
+#         "NSStatusItem Preferred Position BentoBox" = 145;
+#         "NSStatusItem Preferred Position WiFi" = 177;
+#         "NSStatusItem Visible Battery" = 0;
+#         "NSStatusItem Visible BentoBox" = 1;
+#         "NSStatusItem Visible Clock" = 1;
+#         "NSStatusItem Visible FaceTime" = 0;
+#         "NSStatusItem Visible Item-0" = 0;
+#         "NSStatusItem Visible Item-1" = 0;
+#         "NSStatusItem Visible Item-2" = 0;
+#         "NSStatusItem Visible Item-3" = 0;
+#         "NSStatusItem Visible WiFi" = 0;
+
+
+# "eu.exelban.Stats" =     {
+#         "Battery_battery_additional" = percentageAndTime;
+#         "Battery_battery_color" = 1;
+#         "Battery_lowLevelNotification" = "0.1";
+#         "Battery_timeFormat" = short;
+#         "CPU_line_chart_box" = 0;
+#         "CPU_line_chart_color" = utilization;
+#         "CPU_line_chart_label" = 1;
+#         "CPU_line_chart_value" = 1;
+#         "CPU_line_chart_valueColor" = 1;
+#         "CPU_mini_alignment" = right;
+#         "CPU_mini_color" = utilization;
+#         "CPU_widget" = "line_chart";
+#         "Disk_base" = byte;
+#         "Disk_speed_icon" = chars;
+#         "Disk_speed_monochrome" = 0;
+#         "Disk_widget" = "mini,speed";
+#         "GPU_mini_alignment" = right;
+#         "GPU_mini_color" = utilization;
+#         "GPU_state" = 1;
+#         "Network_network_chart_box" = 0;
+#         "Network_network_chart_frame" = 0;
+#         "Network_network_chart_label" = 1;
+#         "Network_speed_icon" = arrows;
+#         "Network_state" = 1;
+#         "Network_widget" = "network_chart";
+#         "RAM_line_chart_box" = 0;
+#         "RAM_line_chart_color" = utilization;
+#         "RAM_line_chart_label" = 1;
+#         "RAM_line_chart_value" = 1;
+#         "RAM_line_chart_valueColor" = 1;
+#         "RAM_widget" = "line_chart";
+#         "SSD_mini_alignment" = right;
+#         "SSD_mini_color" = utilization;
+#         id = "C5652FC8-0C0A-4CEF-B281-79C1797D9D0C";
+#         runAtLoginInitialized = 1;
+#         version = "2.7.0";
+#     };
 
 ###############################################################################
 # Safari & WebKit                                                             #
@@ -203,6 +286,13 @@ if [[ "$RUN_AS_ROOT" = true ]]; then
   # Restart spotlight
   killall mds > /dev/null 2>&1
 fi
+
+###############################################################################
+# Terminal                                                                    #
+###############################################################################
+
+#! Set Terminal to close window on exit
+#defaults write com.apple.Terminal.WindowSettings.Basic shellExitAction -bool true
 
 ###############################################################################
 # Activity Monitor                                                            #
